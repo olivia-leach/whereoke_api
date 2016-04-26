@@ -1,0 +1,2 @@
+--load bars.csv data
+\copy bars(name,nights,time,neighborhood,address,city,state,zip) from 'data/bars.csv' with(header true, format csv)
