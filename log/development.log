@@ -174,3 +174,81 @@ ORDER BY c.conname
   [1m[36mBar Load (10.0ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
   [1m[36mBar Load (0.9ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
   [1m[35mBar Load (1.1ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFavorites (20160426234847)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (20.4ms)[0m  [1mCREATE TABLE "favorites" ("id" serial primary key, "user_id" integer, "bar_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (19.8ms)[0m  CREATE  INDEX  "index_favorites_on_user_id" ON "favorites"  ("user_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX  "index_favorites_on_bar_id" ON "favorites"  ("bar_id")[0m
+  [1m[35m (31.0ms)[0m  ALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+
+  [1m[36m (1.4ms)[0m  [1mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_b88445f822"
+FOREIGN KEY ("bar_id")
+  REFERENCES "bars" ("id")
+[0m
+  [1m[35mSQL (13.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160426234847"]]
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'favorites'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mBar Load (0.9ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
+  [1m[35mBar Load (1.1ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mBar Load (1.7ms)[0m  [1mSELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (1.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "favorites" ON "users"."id" = "favorites"."user_id" WHERE "favorites"."bar_id" = $1  [["bar_id", 19]]
+  [1m[36mFavorite Load (0.6ms)[0m  [1mSELECT "favorites".* FROM "favorites" WHERE "favorites"."bar_id" = $1[0m  [["bar_id", 19]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'ahole@gmail.com' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36mFavorite Load (0.4ms)[0m  [1mSELECT "favorites".* FROM "favorites"[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'ahole@gmail.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mFavorite Load (0.4ms)[0m  [1mSELECT "favorites".* FROM "favorites"[0m
