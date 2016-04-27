@@ -252,3 +252,40 @@ ORDER BY c.conname
   [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'ahole@gmail.com' LIMIT 1[0m
   [1m[35m (0.2ms)[0m  ROLLBACK
   [1m[36mFavorite Load (0.4ms)[0m  [1mSELECT "favorites".* FROM "favorites"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (26.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'ahole@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (61.6ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "ahole@gmail.com"], ["password_digest", "$2a$10$gX.kqs3kbO86p6mPQaedY.gQvq64rcsP.JfU/TdWduZIDqmMjTkPe"], ["created_at", "2016-04-27 00:11:18.800151"], ["updated_at", "2016-04-27 00:11:18.800151"], ["token", "1a2f4528d629e5dc48e463db08d30fd9"]]
+  [1m[36m (35.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'speari@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "speari@gmail.com"], ["password_digest", "$2a$10$MK0klDJH4PwFdLwHCnRWOekoso2rqD8ymfDSizn7fGS0ZgbvZcaL2"], ["created_at", "2016-04-27 00:11:18.995864"], ["updated_at", "2016-04-27 00:11:18.995864"], ["token", "ac789bd25a516b23c801c2c466404994"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mBar Load (1.5ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mBar Load (0.5ms)[0m  [1mSELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'ahole@gmail.com' LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'speari@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35mBar Load (1.1ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mBar Load (0.5ms)[0m  [1mSELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mFavorite Load (0.7ms)[0m  [1mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mBar Load (0.7ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mUser Load (4.9ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mBar Load (0.7ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mBar Load (0.8ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mBar Load (1.7ms)[0m  [1mSELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.7ms)[0m  [1mINSERT INTO "favorites" ("user_id", "bar_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["bar_id", 19], ["created_at", "2016-04-27 00:14:12.558455"], ["updated_at", "2016-04-27 00:14:12.558455"]]
+  [1m[35m (1.3ms)[0m  COMMIT
+  [1m[36mFavorite Load (0.6ms)[0m  [1mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
