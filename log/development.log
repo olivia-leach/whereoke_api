@@ -1200,3 +1200,110 @@ Completed 200 OK in 60ms (Views: 46.7ms | ActiveRecord: 5.1ms)
   [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
   [1m[35mProfile Load (0.6ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
   [1m[36mBar Load (0.9ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 1]]
+
+
+Started GET "/favorites" for ::1 at 2016-04-27 22:36:45 -0400
+Processing by FavoritesController#index as HTML
+  [1m[35mFavorite Load (0.8ms)[0m  SELECT "favorites".* FROM "favorites"
+[active_model_serializers]   [1m[36mProfile Load (0.5ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."id" = $1 LIMIT 1[0m  [["id", 1]]
+[active_model_serializers]   [1m[35mBar Load (0.6ms)[0m  SELECT  "bars".* FROM "bars" WHERE "bars"."id" = $1 LIMIT 1  [["id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (46.56ms)
+Completed 200 OK in 63ms (Views: 51.7ms | ActiveRecord: 7.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateReviews (20160428023731)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (73.2ms)[0m  [1mCREATE TABLE "reviews" ("id" serial primary key, "profile_id" integer, "bar_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_reviews_on_profile_id" ON "reviews"  ("profile_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX  "index_reviews_on_bar_id" ON "reviews"  ("bar_id")[0m
+  [1m[35m (2.7ms)[0m  ALTER TABLE "reviews" ADD CONSTRAINT "fk_rails_231d8a89d8"
+FOREIGN KEY ("profile_id")
+  REFERENCES "profiles" ("id")
+
+  [1m[36m (1.6ms)[0m  [1mALTER TABLE "reviews" ADD CONSTRAINT "fk_rails_3f3d5d5d2e"
+FOREIGN KEY ("bar_id")
+  REFERENCES "bars" ("id")
+[0m
+  [1m[35mSQL (15.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160428023731"]]
+  [1m[36m (16.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'favorites'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'reviews'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.7ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mBar Load (0.8ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 1]]
+  [1m[35mBar Load (0.8ms)[0m  SELECT "bars".* FROM "bars" INNER JOIN "reviews" ON "bars"."id" = "reviews"."bar_id" WHERE "reviews"."profile_id" = $1  [["profile_id", 1]]
+  [1m[36mBar Load (0.6ms)[0m  [1mSELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1[0m
+  [1m[35mBar Load (1.7ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mReview Load (0.5ms)[0m  [1mSELECT "reviews".* FROM "reviews" WHERE "reviews"."bar_id" = $1[0m  [["bar_id", 1]]
+  [1m[35mBar Load (0.8ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mProfile Load (0.6ms)[0m  [1mSELECT "profiles".* FROM "profiles" INNER JOIN "reviews" ON "profiles"."id" = "reviews"."profile_id" WHERE "reviews"."bar_id" = $1[0m  [["bar_id", 1]]
