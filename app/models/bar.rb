@@ -1,4 +1,4 @@
 class Bar < ActiveRecord::Base
-  has_many :users, through: :favorites
   has_many :favorites
+  has_many :fav_profiles, through: :favorites, source: :profile
 end

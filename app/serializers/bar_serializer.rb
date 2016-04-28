@@ -1,3 +1,3 @@
 class BarSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :nights, :time, :address, :city, :state, :zip
 end

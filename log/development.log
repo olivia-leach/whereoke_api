@@ -289,3 +289,914 @@ ORDER BY c.conname
   [1m[36mSQL (1.7ms)[0m  [1mINSERT INTO "favorites" ("user_id", "bar_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["bar_id", 19], ["created_at", "2016-04-27 00:14:12.558455"], ["updated_at", "2016-04-27 00:14:12.558455"]]
   [1m[35m (1.3ms)[0m  COMMIT
   [1m[36mFavorite Load (0.6ms)[0m  [1mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+
+
+Started GET "/" for ::1 at 2016-04-26 20:20:11 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/var/rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (2.9ms)
+Completed 200 OK in 100ms (Views: 100.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for ::1 at 2016-04-26 20:20:17 -0400
+Processing by UsersController#index as HTML
+  Rendered text template (0.0ms)
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 24ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favorites" for ::1 at 2016-04-26 20:20:24 -0400
+Processing by FavoritesController#index as HTML
+  [1m[35mFavorite Load (3.1ms)[0m  SELECT "favorites".* FROM "favorites"
+[active_model_serializers]   [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+[active_model_serializers]   [1m[35mBar Load (0.6ms)[0m  SELECT  "bars".* FROM "bars" WHERE "bars"."id" = $1 LIMIT 1  [["id", 19]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (181.29ms)
+Completed 200 OK in 389ms (Views: 277.8ms | ActiveRecord: 14.0ms)
+
+
+Started GET "/bars" for ::1 at 2016-04-26 20:20:30 -0400
+Processing by BarsController#index as HTML
+  [1m[36mBar Load (0.5ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (2.19ms)
+Completed 200 OK in 13ms (Views: 11.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/favorites" for ::1 at 2016-04-26 20:22:00 -0400
+Processing by FavoritesController#index as HTML
+  [1m[35mFavorite Load (0.4ms)[0m  SELECT "favorites".* FROM "favorites"
+[active_model_serializers]   [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+[active_model_serializers]   [1m[35mBar Load (0.5ms)[0m  SELECT  "bars".* FROM "bars" WHERE "bars"."id" = $1 LIMIT 1  [["id", 19]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (4.58ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/favorites" for ::1 at 2016-04-26 22:43:13 -0400
+Processing by FavoritesController#index as HTML
+  [1m[36mFavorite Load (0.5ms)[0m  [1mSELECT "favorites".* FROM "favorites"[0m
+[active_model_serializers]   [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+[active_model_serializers]   [1m[36mBar Load (0.5ms)[0m  [1mSELECT  "bars".* FROM "bars" WHERE "bars"."id" = $1 LIMIT 1[0m  [["id", 19]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (58.35ms)
+Completed 200 OK in 96ms (Views: 91.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/favorites/1" for ::1 at 2016-04-27 12:36:31 -0400
+Processing by FavoritesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mFavorite Load (1.1ms)[0m  SELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT 1  [["id", 1]]
+[active_model_serializers]   [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+[active_model_serializers]   [1m[35mBar Load (0.5ms)[0m  SELECT  "bars".* FROM "bars" WHERE "bars"."id" = $1 LIMIT 1  [["id", 19]]
+[active_model_serializers] Rendered FavoriteSerializer with ActiveModel::Serializer::Adapter::Json (16.12ms)
+Completed 200 OK in 170ms (Views: 19.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/favorites/" for ::1 at 2016-04-27 12:36:35 -0400
+Processing by FavoritesController#index as HTML
+  [1m[36mFavorite Load (0.4ms)[0m  [1mSELECT "favorites".* FROM "favorites"[0m
+[active_model_serializers]   [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+[active_model_serializers]   [1m[36mBar Load (0.4ms)[0m  [1mSELECT  "bars".* FROM "bars" WHERE "bars"."id" = $1 LIMIT 1[0m  [["id", 19]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (6.03ms)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/bars" for ::1 at 2016-04-27 12:36:52 -0400
+Processing by BarsController#index as HTML
+  [1m[35mBar Load (0.5ms)[0m  SELECT "bars".* FROM "bars"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (2.17ms)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateFavorites (20160426234847)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (94.0ms)[0m  DROP TABLE "favorites"
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20160426234847"]]
+  [1m[35m (23.0ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (15.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateBars (20160426232055)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.2ms)[0m  DROP TABLE "bars"
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20160426232055"]]
+  [1m[35m (2.4ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (5.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBars (20160426232055)
+  [1m[35m (1.6ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/Olivia/wdi/projects/whereoke/whereoke_api/db/migrate/20160426232055_create_bars.rb:13)
+  [1m[36m (62.5ms)[0m  [1mCREATE TABLE "bars" ("id" serial primary key, "name" text, "nights" text, "time" text, "neighborhood" text, "address" text, "city" text, "state" text, "zip" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (15.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160426232055"]]
+  [1m[36m (15.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProfiles (20160427205050)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (50.1ms)[0m  [1mCREATE TABLE "profiles" ("id" serial primary key, "username" text, "fav_song" text, "quote" text, "pic" text, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_profiles_on_user_id" ON "profiles"  ("user_id")
+  [1m[36m (18.9ms)[0m  [1mALTER TABLE "profiles" ADD CONSTRAINT "fk_rails_e424190865"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (15.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160427205050"]]
+  [1m[36m (16.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mProfile Load (1.0ms)[0m  [1mSELECT "profiles".* FROM "profiles"[0m
+  [1m[35mUser Load (1.3ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.7ms)[0m  SELECT "profiles".* FROM "profiles"
+  [1m[36mProfile Load (0.5ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35m (1.4ms)[0m  BEGIN
+  [1m[36mSQL (16.8ms)[0m  [1mINSERT INTO "profiles" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2016-04-28 00:36:55.223504"], ["updated_at", "2016-04-28 00:36:55.223504"]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "profiles" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2016-04-28 00:38:09.905830"], ["updated_at", "2016-04-28 00:38:09.905830"]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (61.3ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 1], ["created_at", "2016-04-28 00:39:38.604432"], ["updated_at", "2016-04-28 00:39:38.604432"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36mProfile Load (0.6ms)[0m  [1mSELECT "profiles".* FROM "profiles"[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (1.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (31.6ms)[0m  COMMIT
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mProfile Load (1.1ms)[0m  SELECT "profiles".* FROM "profiles"
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 2], ["created_at", "2016-04-28 00:46:50.501208"], ["updated_at", "2016-04-28 00:46:50.501208"]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mProfile Load (0.6ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 2]]
+  [1m[36mProfile Load (1.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles"  ORDER BY "profiles"."id" ASC LIMIT 1 OFFSET 3[0m
+  [1m[35mProfile Load (0.5ms)[0m  SELECT "profiles".* FROM "profiles"
+
+
+Started GET "/" for ::1 at 2016-04-27 20:47:44 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/var/rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (0.5ms)
+Completed 200 OK in 75ms (Views: 73.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profiles" for ::1 at 2016-04-27 20:47:49 -0400
+Processing by ProfilesController#index as HTML
+  [1m[35mProfile Load (1.3ms)[0m  SELECT "profiles".* FROM "profiles"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (4.78ms)
+Completed 200 OK in 41ms (Views: 23.5ms | ActiveRecord: 5.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFavorites (20160428005027)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (73.6ms)[0m  [1mCREATE TABLE "favorites" ("id" serial primary key, "profile_id" integer, "bar_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_favorites_on_profile_id" ON "favorites"  ("profile_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX  "index_favorites_on_bar_id" ON "favorites"  ("bar_id")[0m
+  [1m[35m (18.9ms)[0m  ALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_25540b030c"
+FOREIGN KEY ("profile_id")
+  REFERENCES "profiles" ("id")
+
+  [1m[36m (21.1ms)[0m  [1mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_b88445f822"
+FOREIGN KEY ("bar_id")
+  REFERENCES "bars" ("id")
+[0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160428005027"]]
+  [1m[36m (18.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'favorites'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.7ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mFavorite Load (0.5ms)[0m  [1mSELECT "favorites".* FROM "favorites" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 3]]
+  [1m[35mBar Load (0.6ms)[0m  SELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1  [["profile_id", 3]]
+  [1m[36mBar Load (0.5ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (25.2ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Orleans"], ["nights", "Friday, Saturday"], ["time", "10pm - close"], ["neighborhood", "Davis Square"], ["address", "65 Holland St"], ["city", "Somerville"], ["state", "MA"], ["zip", "02144"], ["created_at", "2016-04-28 00:58:38.255437"], ["updated_at", "2016-04-28 00:58:38.255437"]]
+  [1m[35m (21.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["name", "The Painted Burro"], ["nights", "Tuesday"], ["time", "9pm - close"], ["neighborhood", "Davis Square"], ["address", "219 Elm St"], ["city", "Somerville"], ["state", "MA"], ["zip", "02144"], ["created_at", "2016-04-28 00:58:38.308027"], ["updated_at", "2016-04-28 00:58:38.308027"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Highland Kitchen"], ["nights", "Wednesday"], ["time", "10pm - close"], ["neighborhood", "Somerville"], ["address", "150 Highland Ave"], ["city", "Somerville"], ["state", "MA"], ["zip", "02143"], ["created_at", "2016-04-28 00:58:38.312202"], ["updated_at", "2016-04-28 00:58:38.312202"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "El Potro"], ["nights", "Sunday, Monday"], ["neighborhood", "Union Square"], ["address", "61 Union Sq"], ["city", "Somerville"], ["state", "MA"], ["zip", "02143"], ["created_at", "2016-04-28 00:58:38.316422"], ["updated_at", "2016-04-28 00:58:38.316422"]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Charlie's Kitchen"], ["nights", "Tuesday"], ["time", "10pm - close"], ["neighborhood", "Harvard Square"], ["address", "10 Eliot St"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02138"], ["created_at", "2016-04-28 00:58:38.321934"], ["updated_at", "2016-04-28 00:58:38.321934"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["name", "Courtside"], ["nights", "Thursday, Friday, Saturday"], ["time", "9pm - 1am"], ["neighborhood", "East Cambridge"], ["address", "299 Cambridge St"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02141"], ["created_at", "2016-04-28 00:58:38.326492"], ["updated_at", "2016-04-28 00:58:38.326492"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Abigail's"], ["nights", "Friday"], ["time", "10pm - close"], ["address", "291 3rd St"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02142"], ["created_at", "2016-04-28 00:58:38.330955"], ["updated_at", "2016-04-28 00:58:38.330955"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "Bell in Hand Tavern"], ["nights", "Tuesday"], ["time", "9:30pm - close"], ["address", "45 Union St"], ["city", "Boston"], ["state", "MA"], ["zip", "02108"], ["created_at", "2016-04-28 00:58:38.336239"], ["updated_at", "2016-04-28 00:58:38.336239"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (22.9ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Kinsale"], ["nights", "Thursday"], ["time", "8:30pm - close"], ["neighborhood", "Government Center"], ["address", "2 Center Plz"], ["city", "Boston"], ["state", "MA"], ["zip", "02108"], ["created_at", "2016-04-28 00:58:38.365148"], ["updated_at", "2016-04-28 00:58:38.365148"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "bars" ("name", "nights", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "Hong Kong"], ["nights", "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"], ["neighborhood", "Faneuil Hall"], ["address", "65 Chatham St"], ["city", "Boston"], ["state", "MA"], ["zip", "02109"], ["created_at", "2016-04-28 00:58:38.370443"], ["updated_at", "2016-04-28 00:58:38.370443"]]
+  [1m[36m (1.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "The Wild Rover"], ["nights", "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"], ["time", "8pm - 1:30am"], ["address", "61 Chatam St"], ["city", "Boston"], ["state", "MA"], ["zip", "02109"], ["created_at", "2016-04-28 00:58:38.396077"], ["updated_at", "2016-04-28 00:58:38.396077"]]
+  [1m[35m (3.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Limelight Stage + Studio"], ["nights", "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"], ["address", "204 Tremont St"], ["city", "Boston"], ["state", "MA"], ["zip", "02116"], ["created_at", "2016-04-28 00:58:38.403217"], ["updated_at", "2016-04-28 00:58:38.403217"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "The Charles Playhouse Lounge"], ["nights", "Friday"], ["time", "10pm - 2am"], ["address", "74 Warrenton St"], ["city", "Boston"], ["state", "MA"], ["zip", "02116"], ["created_at", "2016-04-28 00:58:38.407497"], ["updated_at", "2016-04-28 00:58:38.407497"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "The Lansdowne Pub"], ["nights", "Thursday"], ["time", "9pm - close"], ["address", "9 Lansdowne St"], ["city", "Boston"], ["state", "MA"], ["zip", "02215"], ["created_at", "2016-04-28 00:58:38.412016"], ["updated_at", "2016-04-28 00:58:38.412016"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Machine"], ["nights", "Thursday"], ["time", "9pm - close"], ["address", "1256 Boylston St"], ["city", "Boston"], ["state", "MA"], ["zip", "02215"], ["created_at", "2016-04-28 00:58:38.416125"], ["updated_at", "2016-04-28 00:58:38.416125"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "Terry O'Reilly's"], ["nights", "Thursday"], ["time", "9pm - close"], ["address", "45 Union St"], ["city", "Newton"], ["state", "MA"], ["zip", "02459"], ["created_at", "2016-04-28 00:58:38.421423"], ["updated_at", "2016-04-28 00:58:38.421423"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Costello's Tavern"], ["nights", "Wednesday"], ["time", "10pm - 2am"], ["neighborhood", "Jamaica Plain"], ["address", "723 Centre St"], ["city", "Jamaica Plain"], ["state", "MA"], ["zip", "02130"], ["created_at", "2016-04-28 00:58:38.426496"], ["updated_at", "2016-04-28 00:58:38.426496"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "dbar"], ["nights", "Friday"], ["time", "10pm - close"], ["address", "1236 Dorchester Ave"], ["city", "Dorchester"], ["state", "MA"], ["zip", "02125"], ["created_at", "2016-04-28 00:58:38.431090"], ["updated_at", "2016-04-28 00:58:38.431090"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Midway Cafe"], ["nights", "Thursday"], ["time", "10pm - close"], ["neighborhood", "Jamaica Plain"], ["address", "3496 Washington St"], ["city", "Boston"], ["state", "MA"], ["zip", "02130"], ["created_at", "2016-04-28 00:58:38.435314"], ["updated_at", "2016-04-28 00:58:38.435314"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["name", "The Jeanie Johnston Pub & Grill"], ["nights", "Saturday"], ["time", "10pm - 2am"], ["neighborhood", "Jamaica Plain"], ["address", "144 South St"], ["city", "Boston"], ["state", "MA"], ["zip", "02130"], ["created_at", "2016-04-28 00:58:38.446436"], ["updated_at", "2016-04-28 00:58:38.446436"]]
+  [1m[36m (4.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "The Asgard"], ["nights", "Thursday"], ["time", "9pm - 1am"], ["neighborhood", "Central Square"], ["address", "350 Massachusetts Ave"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02139"], ["created_at", "2016-04-28 00:58:38.454515"], ["updated_at", "2016-04-28 00:58:38.454515"]]
+  [1m[35m (2.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["name", "Papagayo"], ["nights", "Sunday"], ["time", "10am - 3pm"], ["neighborhood", "South Boston"], ["address", "238 Summer St"], ["city", "Boston"], ["state", "MA"], ["zip", "02210"], ["created_at", "2016-04-28 00:58:38.460893"], ["updated_at", "2016-04-28 00:58:38.460893"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Sissy K's"], ["nights", "Sunday, Monday, Tuesday, Wednesday, Thursday"], ["neighborhood", "Faneuil Hall"], ["address", "6 Commercial St"], ["city", "Boston"], ["state", "MA"], ["zip", "02109"], ["created_at", "2016-04-28 00:58:38.465235"], ["updated_at", "2016-04-28 00:58:38.465235"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "bars" ("name", "nights", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Golden Leaf"], ["nights", "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"], ["address", "20 Hudson St"], ["city", "Boston"], ["state", "MA"], ["zip", "02111"], ["created_at", "2016-04-28 00:58:38.469431"], ["updated_at", "2016-04-28 00:58:38.469431"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Hong Kong"], ["nights", "Sunday"], ["neighborhood", "Harvard Square"], ["address", "1238 Massachusetts Ave"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02138"], ["created_at", "2016-04-28 00:58:38.474487"], ["updated_at", "2016-04-28 00:58:38.474487"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mBar Load (0.6ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
+  [1m[36mBar Load (1.0ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
+
+
+Started GET "/bars" for ::1 at 2016-04-27 20:59:08 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BarsController#index as HTML
+  [1m[35mBar Load (0.8ms)[0m  SELECT "bars".* FROM "bars"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (3.64ms)
+Completed 200 OK in 37ms (Views: 26.3ms | ActiveRecord: 3.5ms)
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (0.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mUser Load (1.8ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (23.9ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mFavorite Load (0.5ms)[0m  SELECT "favorites".* FROM "favorites" WHERE "favorites"."profile_id" = $1  [["profile_id", 3]]
+
+
+Started GET "/bars" for ::1 at 2016-04-27 21:06:04 -0400
+Processing by BarsController#index as HTML
+  [1m[36mBar Load (0.5ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (5.59ms)
+Completed 200 OK in 28ms (Views: 20.1ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/bars" for ::1 at 2016-04-27 21:06:18 -0400
+Processing by BarsController#index as HTML
+  [1m[35mBar Load (1.6ms)[0m  SELECT "bars".* FROM "bars"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (8.03ms)
+Completed 200 OK in 32ms (Views: 21.5ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/users" for ::1 at 2016-04-27 21:06:55 -0400
+Processing by UsersController#index as HTML
+  Rendered text template (0.0ms)
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 4.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profiles" for ::1 at 2016-04-27 21:06:57 -0400
+Processing by ProfilesController#index as HTML
+  [1m[36mProfile Load (0.5ms)[0m  [1mSELECT "profiles".* FROM "profiles"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (1.41ms)
+Completed 200 OK in 19ms (Views: 11.3ms | ActiveRecord: 2.5ms)
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (0.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mUser Load (2.4ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (19.8ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mFavorite Load (0.5ms)[0m  SELECT "favorites".* FROM "favorites" WHERE "favorites"."profile_id" = $1  [["profile_id", 3]]
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (8.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.7ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.7ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.7ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.8ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mBar Load (0.9ms)[0m  [1mSELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (1.7ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (8.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mBar Load (29.4ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mFavorite Load (0.8ms)[0m  [1mSELECT "favorites".* FROM "favorites"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateFavorites (20160428005027)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (3.1ms)[0m  DROP TABLE "favorites"
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20160428005027"]]
+  [1m[35m (39.4ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (3.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (14.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateProfiles (20160427205050)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (3.0ms)[0m  DROP TABLE "profiles"
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20160427205050"]]
+  [1m[35m (2.8ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (5.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateBars (20160426232055)
+  [1m[36m (1.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.5ms)[0m  DROP TABLE "bars"
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20160426232055"]]
+  [1m[35m (2.4ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (5.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (5.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBars (20160426232055)
+  [1m[35m (0.2ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/Olivia/wdi/projects/whereoke/whereoke_api/db/migrate/20160426232055_create_bars.rb:13)
+  [1m[36m (70.7ms)[0m  [1mCREATE TABLE "bars" ("id" serial primary key, "name" text, "nights" text, "time" text, "neighborhood" text, "address" text, "city" text, "state" text, "zip" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (19.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160426232055"]]
+  [1m[36m (11.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProfiles (20160427205050)
+  [1m[35m (15.5ms)[0m  BEGIN
+  [1m[36m (4.5ms)[0m  [1mCREATE TABLE "profiles" ("id" serial primary key, "username" text, "fav_song" text, "quote" text, "pic" text, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE  INDEX  "index_profiles_on_user_id" ON "profiles"  ("user_id")
+  [1m[36m (18.9ms)[0m  [1mALTER TABLE "profiles" ADD CONSTRAINT "fk_rails_e424190865"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160427205050"]]
+  [1m[36m (1.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFavorites (20160428005027)
+  [1m[35m (14.9ms)[0m  BEGIN
+  [1m[36m (3.8ms)[0m  [1mCREATE TABLE "favorites" ("id" serial primary key, "profile_id" integer, "bar_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_favorites_on_profile_id" ON "favorites"  ("profile_id")
+  [1m[36m (2.6ms)[0m  [1mCREATE  INDEX  "index_favorites_on_bar_id" ON "favorites"  ("bar_id")[0m
+  [1m[35m (1.8ms)[0m  ALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_25540b030c"
+FOREIGN KEY ("profile_id")
+  REFERENCES "profiles" ("id")
+
+  [1m[36m (2.0ms)[0m  [1mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_b88445f822"
+FOREIGN KEY ("bar_id")
+  REFERENCES "bars" ("id")
+[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160428005027"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.9ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'favorites'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mBar Load (0.9ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.8ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mProfile Load (0.7ms)[0m  [1mSELECT "profiles".* FROM "profiles"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (37.2ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Orleans"], ["nights", "Friday, Saturday"], ["time", "10pm - close"], ["neighborhood", "Davis Square"], ["address", "65 Holland St"], ["city", "Somerville"], ["state", "MA"], ["zip", "02144"], ["created_at", "2016-04-28 01:30:56.367864"], ["updated_at", "2016-04-28 01:30:56.367864"]]
+  [1m[35m (9.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["name", "The Painted Burro"], ["nights", "Tuesday"], ["time", "9pm - close"], ["neighborhood", "Davis Square"], ["address", "219 Elm St"], ["city", "Somerville"], ["state", "MA"], ["zip", "02144"], ["created_at", "2016-04-28 01:30:56.420953"], ["updated_at", "2016-04-28 01:30:56.420953"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Highland Kitchen"], ["nights", "Wednesday"], ["time", "10pm - close"], ["neighborhood", "Somerville"], ["address", "150 Highland Ave"], ["city", "Somerville"], ["state", "MA"], ["zip", "02143"], ["created_at", "2016-04-28 01:30:56.426341"], ["updated_at", "2016-04-28 01:30:56.426341"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "El Potro"], ["nights", "Sunday, Monday"], ["neighborhood", "Union Square"], ["address", "61 Union Sq"], ["city", "Somerville"], ["state", "MA"], ["zip", "02143"], ["created_at", "2016-04-28 01:30:56.431247"], ["updated_at", "2016-04-28 01:30:56.431247"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Charlie's Kitchen"], ["nights", "Tuesday"], ["time", "10pm - close"], ["neighborhood", "Harvard Square"], ["address", "10 Eliot St"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02138"], ["created_at", "2016-04-28 01:30:56.436563"], ["updated_at", "2016-04-28 01:30:56.436563"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["name", "Courtside"], ["nights", "Thursday, Friday, Saturday"], ["time", "9pm - 1am"], ["neighborhood", "East Cambridge"], ["address", "299 Cambridge St"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02141"], ["created_at", "2016-04-28 01:30:56.441647"], ["updated_at", "2016-04-28 01:30:56.441647"]]
+  [1m[36m (1.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Abigail's"], ["nights", "Friday"], ["time", "10pm - close"], ["address", "291 3rd St"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02142"], ["created_at", "2016-04-28 01:30:56.459734"], ["updated_at", "2016-04-28 01:30:56.459734"]]
+  [1m[35m (10.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "Bell in Hand Tavern"], ["nights", "Tuesday"], ["time", "9:30pm - close"], ["address", "45 Union St"], ["city", "Boston"], ["state", "MA"], ["zip", "02108"], ["created_at", "2016-04-28 01:30:56.475995"], ["updated_at", "2016-04-28 01:30:56.475995"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (2.4ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Kinsale"], ["nights", "Thursday"], ["time", "8:30pm - close"], ["neighborhood", "Government Center"], ["address", "2 Center Plz"], ["city", "Boston"], ["state", "MA"], ["zip", "02108"], ["created_at", "2016-04-28 01:30:56.485875"], ["updated_at", "2016-04-28 01:30:56.485875"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "bars" ("name", "nights", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "Hong Kong"], ["nights", "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"], ["neighborhood", "Faneuil Hall"], ["address", "65 Chatham St"], ["city", "Boston"], ["state", "MA"], ["zip", "02109"], ["created_at", "2016-04-28 01:30:56.497274"], ["updated_at", "2016-04-28 01:30:56.497274"]]
+  [1m[36m (1.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "The Wild Rover"], ["nights", "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"], ["time", "8pm - 1:30am"], ["address", "61 Chatam St"], ["city", "Boston"], ["state", "MA"], ["zip", "02109"], ["created_at", "2016-04-28 01:30:56.505238"], ["updated_at", "2016-04-28 01:30:56.505238"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bars" ("name", "nights", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Limelight Stage + Studio"], ["nights", "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"], ["address", "204 Tremont St"], ["city", "Boston"], ["state", "MA"], ["zip", "02116"], ["created_at", "2016-04-28 01:30:56.521618"], ["updated_at", "2016-04-28 01:30:56.521618"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "The Charles Playhouse Lounge"], ["nights", "Friday"], ["time", "10pm - 2am"], ["address", "74 Warrenton St"], ["city", "Boston"], ["state", "MA"], ["zip", "02116"], ["created_at", "2016-04-28 01:30:56.526610"], ["updated_at", "2016-04-28 01:30:56.526610"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "The Lansdowne Pub"], ["nights", "Thursday"], ["time", "9pm - close"], ["address", "9 Lansdowne St"], ["city", "Boston"], ["state", "MA"], ["zip", "02215"], ["created_at", "2016-04-28 01:30:56.532027"], ["updated_at", "2016-04-28 01:30:56.532027"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Machine"], ["nights", "Thursday"], ["time", "9pm - close"], ["address", "1256 Boylston St"], ["city", "Boston"], ["state", "MA"], ["zip", "02215"], ["created_at", "2016-04-28 01:30:56.536157"], ["updated_at", "2016-04-28 01:30:56.536157"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "Terry O'Reilly's"], ["nights", "Thursday"], ["time", "9pm - close"], ["address", "45 Union St"], ["city", "Newton"], ["state", "MA"], ["zip", "02459"], ["created_at", "2016-04-28 01:30:56.540146"], ["updated_at", "2016-04-28 01:30:56.540146"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Costello's Tavern"], ["nights", "Wednesday"], ["time", "10pm - 2am"], ["neighborhood", "Jamaica Plain"], ["address", "723 Centre St"], ["city", "Jamaica Plain"], ["state", "MA"], ["zip", "02130"], ["created_at", "2016-04-28 01:30:56.544151"], ["updated_at", "2016-04-28 01:30:56.544151"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (22.3ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "dbar"], ["nights", "Friday"], ["time", "10pm - close"], ["address", "1236 Dorchester Ave"], ["city", "Dorchester"], ["state", "MA"], ["zip", "02125"], ["created_at", "2016-04-28 01:30:56.548932"], ["updated_at", "2016-04-28 01:30:56.548932"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Midway Cafe"], ["nights", "Thursday"], ["time", "10pm - close"], ["neighborhood", "Jamaica Plain"], ["address", "3496 Washington St"], ["city", "Boston"], ["state", "MA"], ["zip", "02130"], ["created_at", "2016-04-28 01:30:56.575621"], ["updated_at", "2016-04-28 01:30:56.575621"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["name", "The Jeanie Johnston Pub & Grill"], ["nights", "Saturday"], ["time", "10pm - 2am"], ["neighborhood", "Jamaica Plain"], ["address", "144 South St"], ["city", "Boston"], ["state", "MA"], ["zip", "02130"], ["created_at", "2016-04-28 01:30:56.580464"], ["updated_at", "2016-04-28 01:30:56.580464"]]
+  [1m[36m (13.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "The Asgard"], ["nights", "Thursday"], ["time", "9pm - 1am"], ["neighborhood", "Central Square"], ["address", "350 Massachusetts Ave"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02139"], ["created_at", "2016-04-28 01:30:56.597527"], ["updated_at", "2016-04-28 01:30:56.597527"]]
+  [1m[35m (4.7ms)[0m  COMMIT
+  [1m[36m (2.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "bars" ("name", "nights", "time", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["name", "Papagayo"], ["nights", "Sunday"], ["time", "10am - 3pm"], ["neighborhood", "South Boston"], ["address", "238 Summer St"], ["city", "Boston"], ["state", "MA"], ["zip", "02210"], ["created_at", "2016-04-28 01:30:56.609093"], ["updated_at", "2016-04-28 01:30:56.609093"]]
+  [1m[36m (21.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Sissy K's"], ["nights", "Sunday, Monday, Tuesday, Wednesday, Thursday"], ["neighborhood", "Faneuil Hall"], ["address", "6 Commercial St"], ["city", "Boston"], ["state", "MA"], ["zip", "02109"], ["created_at", "2016-04-28 01:30:56.635250"], ["updated_at", "2016-04-28 01:30:56.635250"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "bars" ("name", "nights", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Golden Leaf"], ["nights", "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"], ["address", "20 Hudson St"], ["city", "Boston"], ["state", "MA"], ["zip", "02111"], ["created_at", "2016-04-28 01:30:56.640453"], ["updated_at", "2016-04-28 01:30:56.640453"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "bars" ("name", "nights", "neighborhood", "address", "city", "state", "zip", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Hong Kong"], ["nights", "Sunday"], ["neighborhood", "Harvard Square"], ["address", "1238 Massachusetts Ave"], ["city", "Cambridge"], ["state", "MA"], ["zip", "02138"], ["created_at", "2016-04-28 01:30:56.644981"], ["updated_at", "2016-04-28 01:30:56.644981"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36mBar Load (0.7ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (0.5ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (10.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 1], ["created_at", "2016-04-28 01:31:47.209210"], ["updated_at", "2016-04-28 01:31:47.209210"]]
+  [1m[35m (1.6ms)[0m  COMMIT
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 2], ["created_at", "2016-04-28 01:32:05.866141"], ["updated_at", "2016-04-28 01:32:05.866141"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 2]]
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (4.0ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (0.8ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mFavorite Load (0.5ms)[0m  SELECT "favorites".* FROM "favorites" WHERE "favorites"."profile_id" = $1  [["profile_id", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (54.8ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mBar Load (0.7ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.9ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (8.2ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mFavorite Load (0.8ms)[0m  [1mSELECT "favorites".* FROM "favorites" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 1]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (4.5ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mBar Load (0.6ms)[0m  SELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1  [["profile_id", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.9ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (15.8ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.6ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mBar Load (0.8ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 1]]
+
+
+Started GET "/users" for ::1 at 2016-04-27 21:43:34 -0400
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by UsersController#index as HTML
+  Rendered text template (0.1ms)
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 12ms (Views: 10.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bars" for ::1 at 2016-04-27 21:43:38 -0400
+Processing by BarsController#index as HTML
+  [1m[36mBar Load (1.2ms)[0m  [1mSELECT "bars".* FROM "bars"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModel::Serializer::Adapter::Json (10.97ms)
+Completed 200 OK in 60ms (Views: 46.7ms | ActiveRecord: 5.1ms)
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (2.0ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (0.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mUser Load (1.7ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mProfile Load (14.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mFavorite Load (0.5ms)[0m  SELECT "favorites".* FROM "favorites" WHERE "favorites"."profile_id" = $1  [["profile_id", 1]]
+  [1m[36mUser Load (3.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mBar Load (0.8ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 1]]
+  [1m[35mBar Load (0.7ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mUser Load (2.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (7.9ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (71.6ms)[0m  INSERT INTO "favorites" ("profile_id", "bar_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["profile_id", 1], ["bar_id", 1], ["created_at", "2016-04-28 02:30:29.346544"], ["updated_at", "2016-04-28 02:30:29.346544"]]
+  [1m[36m (22.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mBar Load (0.6ms)[0m  SELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1  [["profile_id", 1]]
+  [1m[36mUser Load (8.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mBar Load (1.5ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 1]]
+  [1m[35mBar Load (0.8ms)[0m  SELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1
+  [1m[36mBar Load (2.9ms)[0m  [1mSELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1[0m
+  [1m[35mFavorite Load (0.5ms)[0m  SELECT "favorites".* FROM "favorites" WHERE "favorites"."bar_id" = $1  [["bar_id", 1]]
+  [1m[36mBar Load (1.1ms)[0m  [1mSELECT  "bars".* FROM "bars"  ORDER BY "bars"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.6ms)[0m  SELECT "profiles".* FROM "profiles" INNER JOIN "favorites" ON "profiles"."id" = "favorites"."profile_id" WHERE "favorites"."bar_id" = $1  [["bar_id", 1]]
+  [1m[36mProfile Load (0.9ms)[0m  [1mSELECT "profiles".* FROM "profiles"[0m
+  [1m[35mProfile Load (1.2ms)[0m  SELECT  "profiles".* FROM "profiles"  ORDER BY "profiles"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mProfile Load (0.6ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mBar Load (0.9ms)[0m  [1mSELECT "bars".* FROM "bars" INNER JOIN "favorites" ON "bars"."id" = "favorites"."bar_id" WHERE "favorites"."profile_id" = $1[0m  [["profile_id", 1]]
