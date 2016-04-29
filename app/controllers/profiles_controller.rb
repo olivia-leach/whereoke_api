@@ -53,7 +53,13 @@ class ProfilesController < ApplicationController
       @profile = Profile.find(params[:id])
     end
 
+    # def profile_params
+    #   params[:profile]
+    # end
+
     def profile_params
-      params[:profile]
+      params.require(:profile)
+            .permit(:user_id)
     end
+
 end
