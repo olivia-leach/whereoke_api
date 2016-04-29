@@ -59,7 +59,7 @@ class ProfilesController < ApplicationController
 
     def profile_params
       params.require(:profile)
-            .permit(:user_id)
+            .permit(:user_id, :username, :fav_song, :quote, :pic, :fav_bars, :reviews)
     end
 
 end

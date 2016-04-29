@@ -5,3 +5,11 @@ curl --include --request POST http://localhost:3000/profiles \
       "user_id": 3
     }
   }'
+
+  curl --include --request PATCH http://localhost:3000/profiles/1 \
+    --header "Content-Type: application/json" \
+    --data '{
+      "profile": {
+        "pic": "test"
+      }
+    }'
