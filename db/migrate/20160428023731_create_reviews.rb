@@ -8,5 +8,7 @@ class CreateReviews < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :reviews, [:bar_id, :profile_id], unique: true
   end
 end

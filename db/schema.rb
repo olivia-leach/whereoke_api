@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160428023731) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "favorites", ["bar_id", "profile_id"], name: "index_favorites_on_bar_id_and_profile_id", unique: true, using: :btree
   add_index "favorites", ["bar_id"], name: "index_favorites_on_bar_id", using: :btree
   add_index "favorites", ["profile_id"], name: "index_favorites_on_profile_id", using: :btree
 
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160428023731) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "reviews", ["bar_id", "profile_id"], name: "index_reviews_on_bar_id_and_profile_id", unique: true, using: :btree
   add_index "reviews", ["bar_id"], name: "index_reviews_on_bar_id", using: :btree
   add_index "reviews", ["profile_id"], name: "index_reviews_on_profile_id", using: :btree
 
