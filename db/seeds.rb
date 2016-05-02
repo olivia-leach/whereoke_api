@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-andrew = User.create(email: 'ahole@gmail.com', password: 'ahole')
-andrew.profile = Profile.create(user_id: andrew.id)
+require 'csv'
 
-spear = User.create(email: 'speari@gmail.com', password: 'spears')
-spear.profile = Profile.create(user_id: spear.id)
+CSV.foreach('data/bars.csv', headers: true) do |bar|
+  Bar.create!(bar.to_hash)
+end
