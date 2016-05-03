@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :update, :destroy]
+  before_action :authenticate, only: [:show, :update, :destroy]
+  skip_before_action :authenticate, only: [:create]
+  before_action :set_current_user, only: [:create]
 
   # GET /profiles
   # GET /profiles.json
@@ -12,7 +14,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    render json: @profile
+    profile = Profile.find(params[:id])
+    render json: profile
   end
 
   # POST /profiles
