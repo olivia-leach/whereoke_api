@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :update, :destroy]
+  before_action :authenticate, only: [:show, :create, :destroy]
+  # before_action :set_favorite, only: [:show, :update, :destroy]
 
   # GET /favorites
   # GET /favorites.json
@@ -42,7 +43,9 @@ class FavoritesController < ApplicationController
   # DELETE /favorites/1
   # DELETE /favorites/1.json
   def destroy
-    @favorite.destroy
+    if @favorite.present?
+      @favorite.destroy
+    end
 
     head :no_content
   end
