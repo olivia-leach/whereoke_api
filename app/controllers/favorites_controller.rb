@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :authenticate, only: [:show, :create, :destroy]
+  before_action :authenticate, only: [:index, :show, :create, :destroy]
   # before_action :set_favorite, only: [:show, :update, :destroy]
 
   # GET /favorites

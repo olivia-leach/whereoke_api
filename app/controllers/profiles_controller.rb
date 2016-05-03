@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate, only: [:show, :update, :destroy]
+  before_action :authenticate, only: [:index, :show, :update, :destroy]
   skip_before_action :authenticate, only: [:create]
   before_action :set_current_user, only: [:create]
 
