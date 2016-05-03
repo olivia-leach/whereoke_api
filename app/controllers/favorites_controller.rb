@@ -43,9 +43,10 @@ class FavoritesController < ApplicationController
   # DELETE /favorites/1
   # DELETE /favorites/1.json
   def destroy
-    if @favorite.present?
-      @favorite.destroy
-    end
+    # if @favorite.present?
+      favorite = Favorite.find(params[:id])
+      favorite.destroy
+    # end
 
     head :no_content
   end
