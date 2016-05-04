@@ -1,41 +1,37 @@
-# Project 2 for General Assembly Web Development Immersive
+# Whereoke API
 
-## "Whereoke" API
+Project 2 for General Assembly Web Development Immersive
+<https://whereoke-api.herokuapp.com/>
 
-## Structure
+### Profile Actions
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/profiles`             | `profiles#create`    |
+| PATCH*   | `/profiles/:id`             | `profiles#update`    |
+| GET*   | `/profiles/:id`             | `profiles#show`    |
+*Requires user authentication (Token token=$TOKEN)
 
-This template follows the standard project structure in Rails 4.
 
-`curl` command scripts are stored in [`scripts`](scripts) with names that
-correspond to API actions.
+### Review Actions
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST*   | `/reviews`             | `reviews#create`    |
+*Requires user authentication (Token token=$TOKEN)
 
-User authentication is built-in.
 
-## Tasks
+### Favorite Actions
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST*   | `/favorites`             | `favorites#create`    |
+| DELETE*   | `/favorites/:id`             | `profiles#destroy`    |
+*Requires user authentication (Token token=$TOKEN)
 
-Developers should run these often!
+### Bar Actions
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| GET   | `/bars`             | `favorites#index`    |
 
--   `rake routes` lists the endpoints available in your API.
--   `rake test` runs automated tests.
--   `rails console` opens a REPL that pre-loads the API.
--   `rails db` opens your database client and loads the correct database.
--   `rails server` starts the API.
--   `scripts/*.sh` run various `curl` commands to test the API. See below.
-
-<!-- TODO -   `rake nag` checks your code style. -->
-<!-- TODO -   `rake lint` checks your code for syntax errors. -->
-
-## API
-
-Use this as the basis for your own API documentation. Add a new third-level
-heading for your custom entities, and follow the pattern provided for the
-built-in user authentication documentation.
-
-Scripts are included in [`scripts`](scripts) to test built-in actions. Add your
-own scripts to test your custom API. As an alternative, you can write automated
-tests in RSpec to test your API.
-
-### Authentication
+### Authentication (built in)
 
 | Verb   | URI Pattern            | Controller#Action |
 |--------|------------------------|-------------------|
